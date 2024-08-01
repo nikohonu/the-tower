@@ -1,7 +1,7 @@
 import typing
 
-from inu_musume_engine import Vector2
-from inu_musume_engine.draw import draw_circle
+from inu_musume_engine import Vector2, image
+from inu_musume_engine.draw import draw_sprite
 from inu_musume_engine.game import Game, screen
 from inu_musume_engine.game_object import GameObject
 from inu_musume_engine.input import Input
@@ -15,14 +15,25 @@ actions: dict[str, list[Key]] = {
 }
 
 
+class Level(GameObject):
+    @typing.override
+    def ready(self):
+        self.sprite = image.load("sprites/level.png")
+
+    @typing.override
+    def process(self, dt: float):
+        draw_sprite(Vector2(0, 0), self.sprite)
+
+
 class Player(GameObject):
     @typing.override
     def ready(self):
+        self.sprite = image.load("sprites/player.png")
         self.position = Vector2(screen.get_width() / 2, screen.get_height() / 2)
 
     @typing.override
     def process(self, dt: float):
-        draw_circle(self.position, 40, "red")
+        draw_sprite(self.position, self.sprite)
         if Input.is_action_pressed("up"):
             self.position.y -= 300 * dt
         if Input.is_action_pressed("down"):
@@ -34,8 +45,10 @@ class Player(GameObject):
 
 
 def main():
+    level = Level()
     player = Player()
     game = Game(actions)
+    game.add_object(level)
     game.add_object(player)
     game.run()
 
