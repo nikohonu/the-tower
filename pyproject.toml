@@ -5,7 +5,9 @@ description = "The game about climbing the tower"
 authors = [
     {name = "nikohonu", email = "nikohonu@proton.me"},
 ]
-dependencies = []
+dependencies = [
+    "inu-musume-engine @ file:///${PROJECT_ROOT}/inu-musume-engine",
+]
 requires-python = ">=3.12"
 readme = "README.md"
 license = {text = "MIT"}
@@ -23,3 +25,9 @@ dev = [
     "ruff>=0.5.5",
     "basedpyright>=1.15.1",
 ]
+
+[project.scripts]
+tower  = 'the_tower.__main__:main'
+
+[tool.basedpyright]
+typeCheckingMode = "all"

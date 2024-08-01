@@ -1,0 +1,3 @@
+[submodule "inu-musume-engine"]
+	path = inu-musume-engine
+	url = git@github.com:nikohonu/inu-musume-engine.git
