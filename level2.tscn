@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://dfc0lmjqew10d"]
+
+[ext_resource type="Texture2D" uid="uid://ffi3yuysdnar" path="res://level2.png" id="1_lx4o1"]
+[ext_resource type="PackedScene" uid="uid://dnoj2168a3e3f" path="res://player.tscn" id="1_sal7p"]
+[ext_resource type="PackedScene" uid="uid://ii68tiknk5qn" path="res://ladder.tscn" id="3_ytkyw"]
+
+[node name="Level2" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_sal7p")]
+position = Vector2(272, 232)
+
+[node name="CollisionShape2D" type="StaticBody2D" parent="."]
+
+[node name="Level1" type="Sprite2D" parent="CollisionShape2D"]
+texture = ExtResource("1_lx4o1")
+centered = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="CollisionShape2D"]
+polygon = PackedVector2Array(0, 0, 0, 0, 544, 0, 544, 544, 0, 544, 0, 512, 56, 408, 104, 464, 264, 528, 408, 488, 496, 392, 504, 160, 464, 104, 264, 16, 96, 88, 40, 176, 56, 408, 0, 512)
+
+[node name="Ladder" parent="." instance=ExtResource("3_ytkyw")]
+texture_filter = 1
+position = Vector2(272, 272)
+next_level = "res://level1.tscn"
